@@ -164,6 +164,12 @@ The LLM produces radically different NPC behavior — from robust and lore-consi
 
 ---
 
+## Demo Video
+
+[Watch on YouTube](https://youtu.be/ILJZqXa5twU)
+
+---
+
 ## Academic Integrity
 
 All code, analysis, essay prose, and design decisions in this repository represent the student's own work. AI tools (Bookie, Eddy, Figure Architect) were used for drafting and auditing; all tool usage, AI-generated outputs, and human corrections are documented in `authors_note.md`.
