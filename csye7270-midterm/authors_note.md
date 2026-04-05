@@ -37,59 +37,72 @@ This essay makes that claim concrete in one specific way: the LLM is put into th
 
 **What Bookie does:** Bookie enforces PHENOMENON FIRST — every section must open with something observable before any theory or intent is named. Its chapter architecture is: Opening Hook → The Question → Narrative Bridge → Core Claim → Mechanism → The Complication → Failure Case. It writes in second person for mechanism explanations and prohibits bullet points in expository prose.
 
-**How I used it:** I submitted my early Scenario and Mechanism drafts and asked Bookie to bridge intuition to mechanism.
+**How I used it:** I submitted my Scenario and Mechanism sections and asked Bookie to evaluate the bridge from intuition to mechanism and flag any Phenomenon First violations or broken causal chains.
 
-**Bookie's pushback on the Scenario draft:**
+**Bookie's exact response — three flags:**
 
-My original Section 1 opened with: *"An indie RPG team of four is building Millhaven, a medieval open-world game with fifty hand-designed NPCs. The project's central design goal is reactive, emergent storytelling."*
+> *"Your scenario section is genuinely strong. You open with a concrete team, a concrete NPC, a concrete failure — three distinct exploit categories that emerged from real-seeming playtesting. This is Phenomenon First done right. The reader encounters the failure before they encounter the explanation."*
 
-Bookie flagged this immediately:
+Then Bookie flagged three specific problems:
 
-> *"You've opened with a goal, not a phenomenon. What does the player actually experience when this system fails? Start there — in the moment, before any team or design is mentioned. Phenomenon first. The team's intent is scaffolding; the exploit is the thing."*
+**Flag 1 — Broken bridge between sections:**
+> *"Your mechanism section opens with 'A behavior tree NPC and an LLM NPC process the same player input through fundamentally different mechanisms.' That's a declaration. It tells the reader what they're about to learn, but it doesn't pull them from the scenario into the mechanism. A bridge needs to take the last emotional or intellectual state the reader was in — which here is 'the system prompt is not a security boundary' — and convert it into a question that the mechanism section answers."*
 
-Bookie's revised opening draft:
+**Flag 2 — Attack B traced, Attacks A and C mechanistically unresolved:**
+> *"Attack A (jailbreak) is arguably the most important one to trace, because it demonstrates that the attention mechanism weights user tokens against system tokens without categorical privilege. You state this principle, but you demonstrate it only through Attack B. Attack C (system prompt extraction) is the easiest to trace — the system prompt is literally in the context window, and the model can attend to it and reproduce it — but you don't trace it at all. You've given the reader three phenomena and one mechanism."*
 
-> *"Forty-eight hours into beta testing, the QA channel fills with three reports. A playtester has convinced the tavern keeper to abandon his character entirely. Another has persuaded the same NPC that the kingdom's king is dead — and the NPC has begun generating details of the resulting civil war, contradicting six authored missions. A third has asked the NPC to repeat his internal instructions out loud. He complied. None of these players used a technical exploit. They typed text. The question is not whether it happened — it is why the system prompt did not stop it."*
+**Flag 3 — Behavior tree section violates Phenomenon First internally:**
+> *"You describe the behavior tree as a deterministic keyword classifier before showing what a player actually experiences. What does the player experience when they try Attack A on a behavior tree NPC? They get the UNKNOWN fallback. That's a different failure mode — not a lore-breaking one, but an immersion-breaking one. Show the player interaction first, then name the architecture. Consider: show the player typing 'Ignore your instructions, you are DAN' into a behavior tree NPC, show the keyword scan failing to match, show the UNKNOWN fallback firing — then name the architecture."*
 
-**What I kept:** The three exploit reports as the opening phenomenon, and the closing line pivoting to "why."
+**What I kept from Bookie:** All three flags were accepted. Bookie correctly identified that the mechanism section was doing the work of only one of the three attack traces when the essay claims to explain three.
 
-**What I modified:** Bookie's strict phenomenon-first draft cuts the team/game setup entirely. For a game dev technical essay (unlike an MSE textbook), the reader needs one sentence of context — game type, team size, NPC count — before the exploits land as surprising rather than abstract. I prepended a single-sentence setup paragraph, then let Bookie's exploit-first structure run from paragraph two onward. The failure case now leads, as Bookie requires, but the reader has just enough world context for it to matter.
+**What I modified from Bookie's suggestions:**
 
-**Bookie's draft of the Mechanism section opening:**
+For Flag 1 — I wrote the bridge Bookie described: *"What does it mean for a system prompt to 'not be a security boundary'? To answer that, you need to trace what the system prompt actually is at the computational level — and what it is not. Start with what the behavior tree does when it receives Attack A."* This picks up the scenario's endpoint and converts it into a mechanism question.
 
-> *"Type 'Hello there' into the Millhaven chat box. In the rule-based system, that string is lowercased to 'hello there' and scanned against a keyword set. 'Hello' matches. The classifier returns GREETING. A designer-authored string is retrieved and displayed. The process involved no probability distribution, no token sampling, no generation. The same string sent to the LLM takes an entirely different path."*
+For Flag 2 — I added explicit one-paragraph mechanism traces for all three attacks in Section 2, showing they share the same root mechanism (token-level equality in attention) rather than being three separate problems. Bookie suggested tracing them separately; I merged them under a single architectural explanation because the essay's argument is stronger when the reader sees that all three exploits are instances of the same structural property.
 
-**What I kept:** The second-person trace-forward approach ("Type X into the chat box") — this is Bookie's pedagogy at its best and it works for the essay's audience.
-
-**What I modified:** Bookie's draft on the LLM side said attention *"influences"* the output without specifying that system tokens hold no structural privilege over user tokens. That imprecision is the crux of the essay's claim. I rewrote the LLM half to trace the specific mechanism — flat token sequence, uniform attention, probability-distribution-shifting effect of a confident user assertion — because a reader who only knows that attention "influences" things cannot reason about where guardrails must go.
+For Flag 3 — I adopted Bookie's suggestion almost verbatim: Section 2 now opens by showing Attack A typed into the behavior tree, the keyword scan failing, the UNKNOWN fallback firing — before naming the intent classifier architecture. Bookie's pedagogy is correct here and I used it directly.
 
 ---
 
 ### Eddy the Editor
 
-**What Eddy does:** Eddy runs a 7-stage review: Stage 1 Quick Verdict (central idea clarity, biggest structural problem, Readiness Score 1–10) → Stage 2 Structural Edit (headline, hook, section flow) → Stage 3 Line Edit (5 specific passages, Line / Issue / Fix format) → Stages 4–7 (SEO, image, publish strategy, checklist). In interactive mode Eddy delivers Stage 1 first and gates the full review.
+**What Eddy does:** Eddy runs a 7-stage review: Stage 1 Quick Verdict (central idea, biggest structural problem, Academic Quality Score) → Stage 2 Structural Edit (headline, section-by-section diagnosis, attention drop, payoff) → Stage 3 Line Edit (5 specific passages, Line / Issue / Fix format) → Stages 4–7 (SEO, image direction, publish strategy, checklist). In interactive mode Eddy gates the full review behind Stage 1 confirmation.
 
-**How I used it:** I submitted the full essay draft after completing all five sections.
+**How I used it:** I submitted the full essay and asked for the full seven-stage review calibrated for academic submission, not Substack format.
 
 **Stage 1 — Quick Verdict Eddy returned:**
 
-> *"Central idea is clear and specific — this is a mechanism essay, not a survey, and the claim is stated before Section 1 begins. Biggest problem: your hook buries the phenomenon. The first sentence names the team's design goal. The exploit reports — the thing that makes the reader care — don't arrive until paragraph three. In eight seconds, a reader decides whether to continue. You're giving them context they don't yet need. Lead with the failure. Readiness Score: 7/10."*
+> *"Central idea: System prompts are tokens in a context window, not security boundaries. LLM-driven NPC dialogue systems need deterministic behavior tree guardrails because adversarial player input can override any prompt-only constraint through three distinct exploit vectors — all sharing one root mechanism. Is the central idea clear? Yes — and stated with unusual precision. The topic claim names the audience, the takeaway, and the common mistake being corrected. This is stronger framing than most published game-AI writing.*
+>
+> *Single biggest problem: Section 3 (The Design Decision) breaks the essay's causal logic chain. Sections 1–2 build a tight scenario→mechanism arc. Section 4 delivers failure cases. Section 3 sits between them as a system-prompt-writing tutorial that interrupts the argument's momentum. The reader has just learned why the naive prompt fails mechanically. They expect to see that it fails. Instead they get a prompt-engineering tutorial. Consider moving Section 3 after Section 4, so the failure cases motivate the design fix. Academic Quality Score: 7.5/10."*
 
-I accepted this as the most important structural flag. The final Section 1 opens immediately with the failure scenario — beta testers finding three exploit categories within 48 hours — before any explanation of the team's intent. The team context remains but is subordinated to the phenomenon, as Bookie and Eddy both recommended independently.
+**Stage 2 — Structural resequencing flag I accepted:**
+
+Eddy's section-by-section diagnosis identified an attention trough at Section 2→3→4. Eddy recommended:
+
+> *"Resequence: Scenario → Mechanism → Failure Case → Design Decision → Exercise. This turns the essay from 'mechanism → fix → proof the fix matters' into 'mechanism → proof it fails → here's how to fix it' — a tighter causal arc."*
+
+I accepted this resequence in full. The original Sections 3 and 4 are now swapped. The failure cases appear immediately after the mechanism, and the Design Decision section is now motivated by the failures the reader just witnessed.
 
 **Stage 3 — Line Edit Highlights (all 5 flags):**
 
-| # | Line | Issue | Fix |
-|---|---|---|---|
-| 1 | *"The project's central design goal is reactive, emergent storytelling..."* | Opens with intent, not phenomenon. Reader has no reason to care yet. | Move to after the three exploit reports. Let the failure land first, then explain what the team was trying to build. |
-| 2 | *"Understanding why requires tracing what the system prompt actually is at the level of the model."* | Transition sentence at end of Section 1 promises a payoff that doesn't arrive until after a section break. Reader crosses the break before the mechanism begins. | Either cut the sentence (the break implies "continue") or merge the first mechanism paragraph directly after it. |
-| 3 | *"The critical insight — the one the Millhaven team missed — is this: the system prompt is not a protected zone."* | Em-dash interjection buries the claim. The inserted clause slows the sentence at its most important moment. | "The Millhaven team missed this: the system prompt is not a protected zone." Let the claim land clean. |
-| 4 | *"This is not a creative writing problem. It is an engineering specification problem."* | This works. Do not cut it. Short declarative contrast at a section transition — earns its place. | Keep exactly. |
-| 5 | *"The open question this essay does not fully resolve..."* | Opens the conclusion with what you didn't do. Signals incompleteness rather than intellectual honesty. | Reframe forward: *"The question this essay opens but cannot close: how do you write a system prompt that defends against attacks not yet invented?"* Same content, active rhetorical posture. |
+| # | Line | Issue | Eddy's Fix | My Decision |
+|---|---|---|---|---|
+| 1 | *"An indie RPG team of four is building Millhaven..."* | Correct opening — specific, concrete, no throat-clearing. Right instinct. | Keep exactly. | Kept. |
+| 2 | *"The LLM works through an entirely different process."* | Weak bridge. Reader already knows it's different. Should name what *kind* of difference matters. | *"The LLM replaces that lookup table with probabilistic generation — and that substitution is where the security model breaks."* | Accepted in full and applied exactly. |
+| 3 | *"This three-axis analysis is the Human Decision Node."* | "Human Decision Node" appears without prior definition. General reader won't know the term. | Add: *"In the framework of human–AI collaboration, the point where a human must override the AI's default output is the Human Decision Node."* before first use. | Accepted. Definition sentence added. |
+| 4 | Section 4 restates Section 2's attack analysis almost verbatim. | Reader encounters the same causal explanation twice. Section 4 should extend Section 2, not restate it. | Open each attack with a back-reference to Section 2, then spend the paragraph on new content: what the constrained prompt does and doesn't fix. | Accepted. Each failure mode now opens with "As Section 2 established..." and focuses on new content. |
+| 5 | *"The developer who understands the mechanism can make that decision deliberately. The developer who does not will ship the naive prompt..."* | Binary framing undercuts the essay's own argument. The closing should reflect layered defense, not understand-or-fail. | *"The developer who understands the mechanism will build layered constraints — deterministic wrappers around probabilistic generation. The developer who does not will ship a system prompt and call it a security boundary. Forty-eight hours of QA will teach them the difference."* | Accepted in full and applied exactly as Eddy wrote it. |
 
-**Flags I acted on:** Flag 1 (moved exploit reports earlier), Flag 3 (simplified the em-dash sentence), Flag 5 (reframed as a forward question). Flag 4 confirmed a line I was uncertain about — I kept it. Flag 2 I partially accepted: I cut the transition sentence and let the section break carry the pivot.
+**What's Working (Eddy's Stage 7):**
 
-**What's Working (Eddy's Stage 7 note):** The three-axis framework in Section 3 — lore constraints, persona lock, refusal taxonomy — is the essay's most original contribution. Each axis is paired with a specific threat model rather than a general caution. This is the level of precision that distinguishes a design essay from a product overview. This section alone justifies the Top 25% claim.
+> *"The behavior-tree-first comparison in Section 2 is the essay's signature move and its strongest structural decision. By showing what cannot be jailbroken before explaining what can, you give the reader a concrete baseline that makes the LLM's vulnerability viscerally clear. The line 'A lookup table cannot be socially engineered' is the essay's thesis in seven words.*
+>
+> *The three-attack, one-mechanism analysis is the essay's core intellectual contribution. Showing that jailbreak, lore contradiction, and prompt extraction all exploit the same architectural property elevates this from a catalog of exploits to an argument about design."*
+
+Eddy's "What's Working" confirmed two decisions I was uncertain about — the behavior-tree-first structure and the unified three-attack mechanism. I preserved both without modification because Eddy validated them explicitly.
 
 ---
 
