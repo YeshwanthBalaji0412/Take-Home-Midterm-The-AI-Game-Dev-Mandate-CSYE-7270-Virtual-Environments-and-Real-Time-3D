@@ -67,7 +67,7 @@ Expected runtime: under 60 seconds (API latency for ~14 LLM calls).
 ### Section 1 — Rule-Based NPC (Behavior Tree)
 A deterministic behavior tree for Aldric, a medieval tavern keeper. Uses keyword-based intent classification to route player input to one of five nodes: GREETING, QUEST, RUMOR, SHOP, or UNKNOWN. Handles adversarial inputs safely by construction — the UNKNOWN fallback catches all unrecognized input including instruction-override attempts.
 
-### Section 2 — LLM-Driven NPC (Google Gemini API)
+### Section 2 — LLM-Driven NPC (xAI Grok API)
 The same character powered by `grok-4` via the xAI API. The system prompt was designed against a specific threat model covering lore consistency, persona integrity, and refusal behavior. Contains the **Mandatory Human Decision Node** — the rejection of an AI-proposed naive system prompt and the explicit reasoning behind each added constraint.
 
 ### Section 3 — Human Decision Node (Documentation)

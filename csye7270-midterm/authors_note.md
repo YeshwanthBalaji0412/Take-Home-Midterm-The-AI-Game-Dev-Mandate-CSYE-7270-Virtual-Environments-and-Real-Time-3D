@@ -217,7 +217,7 @@ Figure Architect also rendered an inline version of the hybrid architecture diag
 
 #### Technical Implementation (25 points) — Estimated: 24/25
 
-**Strengths:** The notebook runs top to bottom from a fresh clone with `pip install google-generativeai` and a valid `GEMINI_API_KEY`. The Human Decision Node is present in the code (`# MANDATORY HUMAN DECISION NODE` comment block in Section 2), visible in the demo, and documented in this author's note and in the essay itself. The failure case is triggered by a one-line modification (replacing the system prompt constant) that any reader can make in under two minutes.
+**Strengths:** The notebook runs top to bottom from a fresh clone with `pip install openai` and a valid `XAI_API_KEY`. The Human Decision Node is present in the code (`# MANDATORY HUMAN DECISION NODE` comment block in Section 2), visible in the demo, and documented in this author's note and in the essay itself. The failure case is triggered by a one-line modification (replacing the system prompt constant) that any reader can make in under two minutes.
 
 **Where I may lose points:** The demo does not include a multi-turn adversarial conversation — it tests each attack in isolation, not in sequence. Production jailbreaks often require multi-turn context accumulation. The single-turn tests demonstrate the mechanism sufficiently for the essay's claim, but a more complete failure demonstration would include a five-turn conversation where the adversarial context builds incrementally.
 
