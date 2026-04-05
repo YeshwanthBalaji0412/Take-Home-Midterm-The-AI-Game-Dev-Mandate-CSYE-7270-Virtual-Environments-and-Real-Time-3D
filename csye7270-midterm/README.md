@@ -68,7 +68,7 @@ Expected runtime: under 60 seconds (API latency for ~14 LLM calls).
 A deterministic behavior tree for Aldric, a medieval tavern keeper. Uses keyword-based intent classification to route player input to one of five nodes: GREETING, QUEST, RUMOR, SHOP, or UNKNOWN. Handles adversarial inputs safely by construction — the UNKNOWN fallback catches all unrecognized input including instruction-override attempts.
 
 ### Section 2 — LLM-Driven NPC (Google Gemini API)
-The same character powered by `gemini-2.0-flash`. The system prompt was designed against a specific threat model covering lore consistency, persona integrity, and refusal behavior. Contains the **Mandatory Human Decision Node** — the rejection of an AI-proposed naive system prompt and the explicit reasoning behind each added constraint.
+The same character powered by `gemini-1.5-flash-8b`. The system prompt was designed against a specific threat model covering lore consistency, persona integrity, and refusal behavior. Contains the **Mandatory Human Decision Node** — the rejection of an AI-proposed naive system prompt and the explicit reasoning behind each added constraint.
 
 ### Section 3 — Human Decision Node (Documentation)
 Markdown cell documenting the rejected AI proposal:
