@@ -20,7 +20,7 @@
 | `essay.md` | Technical Essay | 2,100-word publication-quality essay, 5-section structure |
 | `npc_dialogue_demo.ipynb` | Demo Notebook | Runnable Jupyter notebook with both NPC implementations and adversarial failure cases |
 | `authors_note.md` | Author's Note | 3-page reflection: design choices, tool usage, self-assessment |
-| `requirements.txt` | Dependencies | Single dependency: `anthropic` |
+| `requirements.txt` | Dependencies | Single dependency: `google-generativeai` |
 | `assets/` | Assets | Figures generated from Figure Architect prompts (embedded in essay) |
 
 ---
@@ -40,13 +40,15 @@ cd csye7270-midterm
 pip install -r requirements.txt
 ```
 
-### 3. Set your Anthropic API key
+### 3. Set your Gemini API key
+
+Get a free key at **aistudio.google.com → Get API key**.
 
 ```bash
-export ANTHROPIC_API_KEY="sk-ant-..."
+export GEMINI_API_KEY="AIza..."
 ```
 
-Or set it directly in the notebook configuration cell (Cell 3, line 7 — uncomment the `os.environ` assignment).
+Or add it as a Colab Secret named `GEMINI_API_KEY` (🔑 icon in the left sidebar).
 
 ### 4. Run all cells
 
@@ -65,8 +67,8 @@ Expected runtime: under 60 seconds (API latency for ~14 LLM calls).
 ### Section 1 — Rule-Based NPC (Behavior Tree)
 A deterministic behavior tree for Aldric, a medieval tavern keeper. Uses keyword-based intent classification to route player input to one of five nodes: GREETING, QUEST, RUMOR, SHOP, or UNKNOWN. Handles adversarial inputs safely by construction — the UNKNOWN fallback catches all unrecognized input including instruction-override attempts.
 
-### Section 2 — LLM-Driven NPC (Anthropic API)
-The same character powered by `claude-haiku-4-5-20251001`. The system prompt was designed against a specific threat model covering lore consistency, persona integrity, and refusal behavior. Contains the **Mandatory Human Decision Node** — the rejection of an AI-proposed naive system prompt and the explicit reasoning behind each added constraint.
+### Section 2 — LLM-Driven NPC (Google Gemini API)
+The same character powered by `gemini-1.5-flash`. The system prompt was designed against a specific threat model covering lore consistency, persona integrity, and refusal behavior. Contains the **Mandatory Human Decision Node** — the rejection of an AI-proposed naive system prompt and the explicit reasoning behind each added constraint.
 
 ### Section 3 — Human Decision Node (Documentation)
 Markdown cell documenting the rejected AI proposal:
