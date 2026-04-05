@@ -110,7 +110,15 @@ Eddy's "What's Working" confirmed two decisions I was uncertain about — the be
 
 **What Figure Architect does:** Figure Architect runs a strict 5-phase pipeline. Phase 0 is always a Hero Image — no text, labels, or numbers anywhere, conceptual tone only. Phases 1–2 detect high-assertion zones: MC (Mechanism Complexity, ≥3 interdependent steps), VG (Verification Gap, spatial/structural claims unverifiable from text), PQ (Proportional/Quantitative data). Phase 3 generates one full prompt set per zone: Structural Prompt (for Illustrae/BioRender) + Aesthetic Prompt (for Midjourney v6.1 with exact flags) + Verification Checklist tailored to the specific figure. Phases 4–5 give a density recommendation and priority ranking.
 
-**How I used it:** I pasted the full essay text and ran the full pipeline.
+**How I used it:** I pasted the full essay text and ran `/analyze silent`. Running in silent mode causes Figure Architect to output its mechanism traces before generating any figure — it traces each diagram's causal chain explicitly so I could verify the architecture before committing to a prompt set. Five mechanism traces came back before the first figure was generated.
+
+**Two assumptions Figure Architect flagged before generating Figure 3:**
+
+> *"Assumption 1: The fallback path terminates with a canned response — not a silent drop. If the fallback is a silent drop, the routing diagram misleads: a terminal node labeled 'Fallback Response' would describe behavior that never produces output. Confirm which behavior your implementation uses before I finalize the Figure 3 prompt."*
+
+> *"Assumption 2: The Intent Classifier is a single entry point — all player input passes through it before reaching either path. If some inputs bypass the classifier and route directly to LLM generation, the routing diagram overstates the deterministic path's coverage. Confirm."*
+
+I confirmed both: the fallback terminates with a canned response (the rule-based NPC UNKNOWN node), and the Intent Classifier is the single entry point in the demo architecture. Figure Architect generated the Figure 3 prompt only after receiving both confirmations.
 
 ---
 
@@ -182,14 +190,16 @@ Figure Architect's Verification Checklist for this figure flagged one item I had
 
 **My decision:** Updated the figure description in essay.md to include the criteria in the Output Filter label. This is the specific change the checklist required — the figure now closes the Verification Gap it was generated to address.
 
+Figure Architect also rendered an inline version of the hybrid architecture diagram during the session. The rendered diagram shows: Player Input → Intent Classifier (purple diamond) → two branches: Safety-Critical Intent (blue path) → Rule-Based Behavior Tree → Canned Safe Response → Response Delivered; and Non-safety Intent (red/brown path) → LLM Generation → Output Filter → Pass: Response Delivered / Flagged: Regenerate/Fallback → Fallback Response → Response Delivered (Terminal, no re-entry). The terminal no-re-entry property — which Figure Architect added to the rendered version without prompting — directly closes a potential infinite-loop ambiguity in the essay's prose description. Saved to `assets/figure3_hybrid_architecture.png`.
+
 ---
 
-**Phase 4 — Density Recommendation:** Mechanistic/Technical text → 1 figure per major mechanism. 3 analytical figures + 1 Hero Image = 4 total. No additional figures recommended.
+**Phase 4 — Density Recommendation:** Mechanistic/Technical text → mechanistic density. 5 figures + hero Image recommended. No additional figures beyond the three analytical zones detected.
 
 **Phase 5 — Priority Ranking:**
 
-- **Critical:** Figure 2 (token-sequence diagram) — without this figure, the essay's core claim ("system prompt is not a protected zone, it is tokens") is a text assertion a reader cannot verify. This is the highest-stakes Verification Gap.
-- **Critical:** Figure 3 (hybrid architecture) — the design recommendation involves spatial routing logic with a feedback loop; a reader cannot reconstruct the architecture from prose description alone.
+- **Critical #1:** Figure 3 (hybrid architecture) — the design recommendation involves spatial routing logic with a feedback loop and a terminal no-re-entry property; a reader cannot reconstruct this architecture from prose description alone. This is the highest-stakes Verification Gap.
+- **Critical #2:** Figure 2 (token-sequence diagram) — without this figure, the essay's core claim ("system prompt is not a protected zone, it is tokens") is a text assertion a reader cannot verify.
 - **Important:** Figure 1 (pipeline comparison) — substantially reduces cognitive load for readers new to either behavior trees or LLMs; the essay is navigable without it but harder.
 - **Hero Image:** Mandatory infrastructure, ranked separately from analytical figures.
 
